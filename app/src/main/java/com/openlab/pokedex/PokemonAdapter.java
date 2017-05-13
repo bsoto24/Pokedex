@@ -1,7 +1,13 @@
 package com.openlab.pokedex;
 
-import android.content.Context;
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Explode;
+import android.transition.Fade;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +16,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import static com.openlab.pokedex.R.string.transition;
+
 /**
  * Created by Bryam Soto on 06/05/2017.
  */
@@ -17,25 +25,51 @@ import java.util.ArrayList;
 public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonView>{
 
     private ArrayList<Pokemon> pokemones;
-    private Context context;
+    private Activity activity;
 
-    public PokemonAdapter(ArrayList<Pokemon> pokemones, Context context) {
+    public PokemonAdapter(ArrayList<Pokemon> pokemones, Activity activity) {
         this.pokemones = pokemones;
-        this.context = context;
+        this.activity = activity;
     }
 
     @Override
     public PokemonView onCreateViewHolder(ViewGroup parent, int viewType) {
-        LayoutInflater inflater = LayoutInflater.from(context);
+        LayoutInflater inflater = LayoutInflater.from(activity);
         View view = inflater.inflate(R.layout.item_pokemon, parent, false);
         PokemonView pokemonView = new PokemonView(view);
         return  pokemonView;
     }
 
     @Override
-    public void onBindViewHolder(PokemonView holder, int position) {
+    public void onBindViewHolder(PokemonView holder, final int position) {
         holder.imgPokemon.setImageResource(pokemones.get(position).getImagen());
         holder.tvPokemon.setText(pokemones.get(position).getNombre());
+        holder.imgPokemon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, PokemonDetailActivity.class);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("pokemon", pokemones.get(position));
+                intent.putExtras(bundle);
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Fade fade = new Fade();
+                    fade.setDuration(1000);
+                    activity.getWindow().setExitTransition(fade);
+                } else {
+                    activity.startActivity(intent);
+                }
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    Explode explode = new Explode();
+                    explode.setDuration(1000);
+                    activity.getWindow().setExitTransition(explode);
+                    activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, activity.getString(transition)).toBundle());
+                }else{
+                    activity.startActivity(intent);
+                }
+            }
+        });
     }
 
     @Override

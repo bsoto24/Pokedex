@@ -1,10 +1,12 @@
 package com.openlab.pokedex;
 
+import java.io.Serializable;
+
 /**
  * Created by Bryam Soto on 06/05/2017.
  */
 
-public class Pokemon {
+public class Pokemon implements Serializable{
 
     private String nombre;
     private int imagen;
@@ -28,5 +30,13 @@ public class Pokemon {
 
     public void setImagen(int imagen) {
         this.imagen = imagen;
+    }
+
+    @Override
+    public String toString() {
+        return "Pokemon{" +
+                "nombre='" + nombre + '\'' +
+                ", imagen=" + imagen +
+                '}';
     }
 }
