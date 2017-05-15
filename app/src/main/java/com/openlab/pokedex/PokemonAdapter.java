@@ -8,6 +8,7 @@ import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
 import android.transition.Explode;
 import android.transition.Fade;
+import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,16 +55,9 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
                 intent.putExtras(bundle);
 
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Fade fade = new Fade();
-                    fade.setDuration(1000);
-                    activity.getWindow().setExitTransition(fade);
-                } else {
-                    activity.startActivity(intent);
-                }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Explode explode = new Explode();
-                    explode.setDuration(1000);
-                    activity.getWindow().setExitTransition(explode);
+                    Slide slide = new Slide();
+                    slide.setDuration(1000);
+                    activity.getWindow().setExitTransition(slide);
                     activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, activity.getString(transition)).toBundle());
                 }else{
                     activity.startActivity(intent);

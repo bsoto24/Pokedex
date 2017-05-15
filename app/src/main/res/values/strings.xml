@@ -1,7 +1,6 @@
 <resources>
     <string name="app_name">Pokedex</string>
     <string name="transition">transition</string>
-    <string name="transicion_pokemon">transision_pokemons</string>
     <string name="like">Me gusta</string>
     <string name="lorem">Gracias por la respuesta, tengo Android Studio 2.2.3 y uno de los íconos sería el del engranaje de color celeste que aparece al final de los íconos (no el de barra del título), y también hay otros que ha utilizado y ahora no recuerdo, pero que aparecen en el video, pero no vienen en la configuración por defecto de Android Studio.</string>
 </resources>
