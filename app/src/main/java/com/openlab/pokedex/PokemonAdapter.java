@@ -2,13 +2,8 @@ package com.openlab.pokedex;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.RecyclerView;
-import android.transition.Explode;
-import android.transition.Fade;
-import android.transition.Slide;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,13 +12,11 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static com.openlab.pokedex.R.string.transition;
-
 /**
  * Created by Bryam Soto on 06/05/2017.
  */
 
-public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonView>{
+public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonView> {
 
     private ArrayList<Pokemon> pokemones;
     private Activity activity;
@@ -38,7 +31,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
         LayoutInflater inflater = LayoutInflater.from(activity);
         View view = inflater.inflate(R.layout.item_pokemon, parent, false);
         PokemonView pokemonView = new PokemonView(view);
-        return  pokemonView;
+        return pokemonView;
     }
 
     @Override
@@ -54,14 +47,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
                 bundle.putSerializable("pokemon", pokemones.get(position));
                 intent.putExtras(bundle);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    Slide slide = new Slide();
-                    slide.setDuration(1000);
-                    activity.getWindow().setExitTransition(slide);
-                    activity.startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(activity, view, activity.getString(transition)).toBundle());
-                }else{
-                    activity.startActivity(intent);
-                }
+                activity.startActivity(intent);
             }
         });
     }
@@ -71,7 +57,7 @@ public class PokemonAdapter extends RecyclerView.Adapter<PokemonAdapter.PokemonV
         return pokemones.size();
     }
 
-    public class PokemonView extends RecyclerView.ViewHolder{
+    public class PokemonView extends RecyclerView.ViewHolder {
 
         ImageView imgPokemon;
         TextView tvPokemon;

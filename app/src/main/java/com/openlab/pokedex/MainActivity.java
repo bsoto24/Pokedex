@@ -36,7 +36,7 @@ public class MainActivity  extends AppCompatActivity{
     private ArrayList<Pokemon> getPokemones(){
         ArrayList<Pokemon> pokemones = new ArrayList<>();
         pokemones.add(new Pokemon("Pikachu","Electrico","400","Impactrueno", R.drawable.img_pikachu));
-        pokemones.add(new Pokemon("Makey","Lucha","600","Espiritu Vital", R.drawable.mankey));
+        pokemones.add(new Pokemon("Mankey","Lucha","600","Espiritu Vital", R.drawable.mankey));
         pokemones.add(new Pokemon("Meowth","Normal", "300", "Arañazo", R.drawable.meowth));
         pokemones.add(new Pokemon("Pidget","Volador","400","Vista Lince", R.drawable.pidgey));
         pokemones.add(new Pokemon("Mew","Psiquico","800","Sincronia", R.drawable.mew));

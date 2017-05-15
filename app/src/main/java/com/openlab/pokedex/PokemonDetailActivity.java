@@ -33,27 +33,13 @@ public class PokemonDetailActivity extends AppCompatActivity {
         tvPokemonVida = (TextView) findViewById(R.id.tv_pokemon_vida);
         tvPokemonAtaque = (TextView) findViewById(R.id.tv_pokemon_ataque);
 
-        showToolbar(pokemon.getNombre(),false);
-
         imgPokemon.setImageResource(pokemon.getImagen());
         tvPokemonNombre.setText(pokemon.getNombre());
         tvPokemonTipo.setText(pokemon.getTipo());
         tvPokemonVida.setText(pokemon.getVida());
         tvPokemonAtaque.setText(pokemon.getAtaque());
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(Color.TRANSPARENT);
-            getWindow().setExitTransition(new Slide());
-        }
-
     }
 
-    public void showToolbar(String title, boolean upButton) {
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(title);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
-        CollapsingToolbarLayout collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collapsing_toolbar);
-    }
 
 }
