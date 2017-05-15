@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.transition.Fade;
-import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class PokemonDetailActivity extends AppCompatActivity {
 
     private Pokemon pokemon;
+    private ImageView imgPokemon;
+    private TextView tvPokemonNombre, tvPokemonTipo, tvPokemonVida, tvPokemonAtaque;
 
 
     @Override
@@ -20,11 +23,21 @@ public class PokemonDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_pokemon_detail);
 
         getIntent().getExtras().getBundle("pokemon");
-
         pokemon = (Pokemon) getIntent().getExtras().getSerializable("pokemon");
-        Log.e("DETALLE POKEMON", pokemon.toString());
 
-        showToolbar("Pikachu",false);
+        imgPokemon = (ImageView) findViewById(R.id.img_pokemon);
+        tvPokemonNombre = (TextView) findViewById(R.id.tv_pokemon_nombre);
+        tvPokemonTipo = (TextView) findViewById(R.id.tv_pokemon_tipo);
+        tvPokemonVida = (TextView) findViewById(R.id.tv_pokemon_vida);
+        tvPokemonAtaque = (TextView) findViewById(R.id.tv_pokemon_ataque);
+
+        showToolbar(pokemon.getNombre(),false);
+
+        imgPokemon.setImageResource(pokemon.getImagen());
+        tvPokemonNombre.setText(pokemon.getNombre());
+        tvPokemonTipo.setText(pokemon.getTipo());
+        tvPokemonVida.setText(pokemon.getVida());
+        tvPokemonAtaque.setText(pokemon.getAtaque());
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getWindow().setStatusBarColor(Color.TRANSPARENT);

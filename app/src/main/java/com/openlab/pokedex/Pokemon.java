@@ -9,10 +9,19 @@ import java.io.Serializable;
 public class Pokemon implements Serializable{
 
     private String nombre;
+    private String tipo;
+    private String vida;
+    private String ataque;
     private int imagen;
 
-    public Pokemon(String nombre, int imagen) {
+    public Pokemon() {
+    }
+
+    public Pokemon(String nombre, String tipo, String vida, String ataque, int imagen) {
         this.nombre = nombre;
+        this.tipo = tipo;
+        this.vida = vida;
+        this.ataque = ataque;
         this.imagen = imagen;
     }
 
@@ -24,19 +33,35 @@ public class Pokemon implements Serializable{
         this.nombre = nombre;
     }
 
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getVida() {
+        return vida;
+    }
+
+    public void setVida(String vida) {
+        this.vida = vida;
+    }
+
+    public String getAtaque() {
+        return ataque;
+    }
+
+    public void setAtaque(String ataque) {
+        this.ataque = ataque;
+    }
+
     public int getImagen() {
         return imagen;
     }
 
     public void setImagen(int imagen) {
         this.imagen = imagen;
-    }
-
-    @Override
-    public String toString() {
-        return "Pokemon{" +
-                "nombre='" + nombre + '\'' +
-                ", imagen=" + imagen +
-                '}';
     }
 }
